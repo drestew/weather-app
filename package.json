@@ -1,5 +1,5 @@
 {
-  "name": "starter",
+  "name": "weather-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,17 +10,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/drestew/starter.git"
+    "url": "git+https://github.com/drestew/weather-app.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/drestew/starter/issues"
+    "url": "https://github.com/drestew/weather-app/issues"
   },
-  "homepage": "https://github.com/drestew/starter#readme",
+  "homepage": "https://github.com/drestew/weather-app#readme",
   "devDependencies": {
     "css-loader": "^6.7.1",
+    "dotenv-webpack": "^8.0.1",
     "sass": "^1.54.0",
     "sass-loader": "^13.0.2",
     "style-loader": "^3.3.1",
