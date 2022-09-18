@@ -1,3 +1,5 @@
-import {weatherData} from "./weatherData";
+import { weatherData } from "./weatherData";
+import { hourlyForecast } from "./ui";
 
-weatherData()
+//weatherData();
+//hourlyForecast();

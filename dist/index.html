@@ -14,17 +14,27 @@
     <div>
       <div>
         <span>City</span>
-        <input type="text" id="city-input">
+        <input type="text" id="city-input" />
       </div>
-      <div>
+      <div class="search">
         <span>State</span>
         <select name="states" id="state-input">
-          <option value ="">--Select State--</option>
+          <option value="">--Select State--</option>
           <option value="Alabama">California</option>
           <option value="Alabama">Ohio</option>
           <option value="Alabama">New York</option>
           <option value="Alabama">Texas</option>
+        </select>
+        <button class="submit-search">Search</button>
       </div>
+    </div>
+    <div class="forecast-container">
+      <div class="forecast-type">
+        <h2 class="forecast-type-header">Forecast</h2>
+        <button class="hourly">Hourly</button>
+        <button class="daily">7-day</button>
+      </div>
+      <div class="forecast-results"></div>
     </div>
     <script src="./main.js"></script>
   </body>
