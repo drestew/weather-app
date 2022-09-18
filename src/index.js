@@ -1,5 +1,16 @@
-import { weatherData } from "./weatherData";
-import { hourlyForecast } from "./ui";
+import {
+  dailyForecast,
+  hourlyForecast,
+  forecastType,
+  forecastCityState,
+} from "./ui";
+import { locationCityState } from "./location";
 
-weatherData();
-hourlyForecast();
+window.addEventListener("load", function () {
+  forecastType();
+  const search = document.querySelector(".submit-search");
+  search.addEventListener("click", function () {
+    locationCityState();
+    forecastCityState();
+  });
+});

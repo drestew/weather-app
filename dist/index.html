@@ -20,10 +20,10 @@
         <span>State</span>
         <select name="states" id="state-input">
           <option value="">--Select State--</option>
-          <option value="Alabama">California</option>
-          <option value="Alabama">Ohio</option>
-          <option value="Alabama">New York</option>
-          <option value="Alabama">Texas</option>
+          <option value="California">California</option>
+          <option value="Ohio">Ohio</option>
+          <option value="New York">New York</option>
+          <option value="Texas">Texas</option>
         </select>
         <button class="submit-search">Search</button>
       </div>
@@ -31,8 +31,10 @@
     <div class="forecast-container">
       <div class="forecast-type">
         <h2 class="forecast-type-header">Forecast</h2>
-        <button class="hourly">Hourly</button>
-        <button class="daily">7-day</button>
+        <div class="forecast-btns">
+          <button class="hourly">Hourly</button>
+          <button class="daily">7-day</button>
+        </div>
       </div>
       <div class="forecast-results"></div>
     </div>

@@ -1,4 +1,5 @@
 import { weatherData } from "./weatherData";
+import { locationCityState } from "./location";
 
 const hourlyDataEls = function () {
   const dataContainer = document.createElement("div");
@@ -91,4 +92,30 @@ const dailyForecast = async function () {
   });
 };
 
-export { hourlyForecast, dailyForecast };
+const forecastType = function () {
+  const forecastBtns = document.querySelector(".forecast-btns");
+
+  forecastBtns.addEventListener("click", function (e) {
+    clearWeatherData();
+    if (e.target.classList.contains("hourly")) {
+      return hourlyForecast();
+    }
+    return dailyForecast();
+  });
+};
+
+const clearWeatherData = function () {
+  const dataContainer = document.querySelector(".forecast-results");
+  while (dataContainer.firstChild) {
+    dataContainer.removeChild(dataContainer.firstChild);
+  }
+};
+
+const forecastCityState = function () {
+  const forecastHeader = document.querySelector(".forecast-type-header");
+  const cityState = locationCityState();
+
+  return (forecastHeader.textContent = `Forecast - ${cityState.localeCity}, ${cityState.localeState}`);
+};
+
+export { hourlyForecast, dailyForecast, forecastType, forecastCityState };
