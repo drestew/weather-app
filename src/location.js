@@ -3,7 +3,7 @@ const locationCityState = function () {
   const localeState = document.querySelector("#state-input").value;
 
   let localeCity = cityInput.toLowerCase();
-  localeCity = `${localeCity.charAt(0).toUpperCase()} ${localeCity.slice(1)}`;
+  localeCity = `${localeCity.charAt(0).toUpperCase()}${localeCity.slice(1)}`;
 
   return { localeCity, localeState };
 };

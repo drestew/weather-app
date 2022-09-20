@@ -1,6 +1,5 @@
 import { stateCode } from "./geoCodes";
 import { locationCityState } from "./location";
-import { forecastCityState } from "./ui";
 
 const coordinates = async function () {
   const location = locationCityState();

@@ -1,9 +1,4 @@
-import {
-  dailyForecast,
-  hourlyForecast,
-  forecastType,
-  forecastCityState,
-} from "./ui";
+import { todayForecast, forecastType, forecastCityState } from "./ui";
 import { locationCityState } from "./location";
 
 window.addEventListener("load", function () {
@@ -11,6 +6,7 @@ window.addEventListener("load", function () {
   const search = document.querySelector(".submit-search");
   search.addEventListener("click", function () {
     locationCityState();
+    todayForecast();
     forecastCityState();
   });
 });

@@ -32,7 +32,7 @@ const hourlyForecast = async function () {
     newEl.dateEl.textContent = new Date(curHour.dt * 1000).toLocaleTimeString();
     newEl.tempEl.textContent = curHour.temp;
     newEl.weatherEl.textContent = curHour.weather[0].main;
-    const results = document.querySelector(".forecast-results");
+    const results = document.querySelector(".forecast");
 
     results.appendChild(newEl.dataContainer);
   });
@@ -73,6 +73,47 @@ const dailyDataEls = function () {
   };
 };
 
+const todayDataEls = function () {
+  const dataContainer = document.createElement("div");
+  dataContainer.classList.add("forecast-results");
+  const date = document.createElement("span");
+  date.classList.add("today-date", "block");
+  const sunrise = document.createElement("span");
+  sunrise.classList.add("today-sunrise", "block");
+  const sunset = document.createElement("span");
+  sunset.classList.add("today-sunset", "block");
+  const temp = document.createElement("span");
+  temp.classList.add("today-temp", "block");
+  const humidity = document.createElement("span");
+  humidity.classList.add("today-humidity", "block");
+  const weather = document.createElement("span");
+  weather.classList.add("today-weather", "block");
+
+  dataContainer.appendChild(date);
+  dataContainer.appendChild(sunrise);
+  dataContainer.appendChild(sunset);
+  dataContainer.appendChild(temp);
+  dataContainer.appendChild(humidity);
+  dataContainer.appendChild(weather);
+
+  const dateEl = dataContainer.querySelector(".today-date");
+  const sunriseEl = dataContainer.querySelector(".today-sunrise");
+  const sunsetEl = dataContainer.querySelector(".today-sunset");
+  const tempEl = dataContainer.querySelector(".today-temp");
+  const humidityEl = dataContainer.querySelector(".today-humidity");
+  const weatherEl = dataContainer.querySelector(".today-weather");
+
+  return {
+    dataContainer,
+    dateEl,
+    sunriseEl,
+    sunsetEl,
+    tempEl,
+    humidityEl,
+    weatherEl,
+  };
+};
+
 const dailyForecast = async function () {
   const data = await weatherData();
   const dailyData = data.daily;
@@ -81,15 +122,37 @@ const dailyForecast = async function () {
   dailyDataArr.forEach((item, i) => {
     const newEl = dailyDataEls();
     const curDay = dailyData[i];
-    newEl.dateEl.textContent = new Date(curDay.dt * 1000).toLocaleTimeString();
+    let day = new Date(curDay.dt * 1000).toDateString();
+    day = day.slice(0, 3);
+    newEl.dateEl.textContent = day;
     newEl.tempLowEl.textContent = curDay.temp.min;
     newEl.tempHighEl.textContent = curDay.temp.max;
     newEl.humidityEl.textContent = curDay.humidity;
     newEl.weatherEl.textContent = curDay.weather[0].main;
-    const results = document.querySelector(".forecast-results");
-
+    const results = document.querySelector(".forecast");
+    console.log(curDay);
     results.appendChild(newEl.dataContainer);
   });
+};
+
+const todayForecast = async function () {
+  const data = await weatherData();
+  const todayData = data.current;
+  const newEl = todayDataEls();
+
+  let todayDate = new Date(todayData.dt * 1000).toDateString();
+  // todayDate = todayDate.slice(0, 3);
+  newEl.dateEl.textContent = todayDate;
+  let sunrise = new Date(todayData.sunrise * 1000).toTimeString();
+  newEl.sunriseEl.textContent = `Sunrise - ${sunrise}`;
+  let sunset = new Date(todayData.sunrise * 1000).toTimeString();
+  newEl.sunsetEl.textContent = `Sunset - ${sunset}`;
+  newEl.tempEl.textContent = todayData.temp;
+  newEl.humidityEl.textContent = todayData.humidity;
+
+  const results = document.querySelector(".forecast");
+
+  results.appendChild(newEl.dataContainer);
 };
 
 const forecastType = function () {
@@ -105,7 +168,7 @@ const forecastType = function () {
 };
 
 const clearWeatherData = function () {
-  const dataContainer = document.querySelector(".forecast-results");
+  const dataContainer = document.querySelector(".forecast");
   while (dataContainer.firstChild) {
     dataContainer.removeChild(dataContainer.firstChild);
   }
@@ -118,4 +181,10 @@ const forecastCityState = function () {
   return (forecastHeader.textContent = `Forecast - ${cityState.localeCity}, ${cityState.localeState}`);
 };
 
-export { hourlyForecast, dailyForecast, forecastType, forecastCityState };
+export {
+  hourlyForecast,
+  dailyForecast,
+  todayForecast,
+  forecastType,
+  forecastCityState,
+};
